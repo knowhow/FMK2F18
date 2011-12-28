@@ -194,7 +194,7 @@ do
 done
 for files in $( ls *.FPT )
 do     
-    cp $files.FPT $F18DBPATH/$files.fpt
+    cp $files $F18DBPATH
 done
 
 cd $F18DBPATH
