@@ -5,13 +5,22 @@
 ###########################################
 FMKDBPATH="$1"
 F18DBPATH="$2"
+IDFIRMA="$3"
+GODINA="$4"
 ###########################################
-ARGS=3
+ARGS=5
 BADARGS=85
 
 if [ $# -lt  "$ARGS" ];then
-     echo "Upotreba: input folder | output folder  | modul1 | modul 2 |  sifrarnik "
-     echo "Npr.  fin kalk fakt sif itd. Najmanje 1 modul ili sifrarnik"
+     echo ""
+     echo ""
+     echo "Upotreba: input folder | output folder | firma | godina  | modul1 | modul 2 |  sifrarnik "
+     echo "" 
+     echo "Npr.  ./FMK2F18_prepare.sh /home/SIGMA /home/f18_fmk 1 2010 fin kalk fakt sif" 
+     echo ""
+     echo "Za trenutnu godinu korititi RP oznaku"
+     echo ""
+     echo "Najmanje 1 modul ili sifrarnik"
      exit $BADARGS
 fi
 
@@ -29,6 +38,38 @@ if [ -d $FMKDBPATH ]; then
 fi
 
 
+# dali je RP ili Sezona 
+if [ "$GODINA" =  "RP" ]
+    then
+    SEZONATAR=""
+    else
+    SEZONA="$GODINA" 
+fi
+
+# info 
+
+bold=`tput bold`
+normal=`tput sgr0`
+echo ""
+echo ""
+echo ""
+echo ""
+echo " source lokacija FMK DB-a je: ${bold} $FMKDBPATH ${normal} "
+echo " destinacija za F18 DB je:... ${bold} $F18DBPATH ${normal} "
+echo " id Firme je: ............... ${bold} $IDFIRMA ${normal} "
+echo " sezona je .................. ${bold} $GODINA ${normal} "
+echo ""
+echo ""
+echo ""
+read -p "Ako su gornji parametri ispravni pritisni bilo koju tipku za nastavak ili Ctrl+c  za prekid"
+echo ""
+echo ""
+echo ""
+
+# rename source to UPPERCASE
+cd $FMKDBPATH
+find . -type d | rename 'y/a-z/A-Z/'  
+find . -type f | rename 'y/a-z/A-Z/'
 
 
 fin () {
@@ -36,7 +77,7 @@ fin () {
 echo "kopiram fmk db to f18" 
 echo "FIN tabele"
 FINTB="SUBAN ANAL SINT NALOG"
-cd $FMKDBPATH/FIN
+cd $FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA
 for table in $FINTB
 do 
     cp $table.DBF $F18DBPATH/fin_$table.dbf 
@@ -47,6 +88,7 @@ for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
     echo "lista kopiranih fajlova"
     ls $F18DBPATH 
     echo "...OK nastavljam ................."
+    sleep 3
 }
 
 
@@ -55,7 +97,7 @@ fakt () {
 echo "kopiram fmk db to f18" 
 echo "FAKT tabele"
 FAKTB="FAKT DOKS DOKS2 GEN_UG GEN_UG_P RUGOV UGOV UPL"
-    cd $FMKDBPATH/FAKT
+    cd $FMKDBPATH/FAKT/KUM$IDFIRMA/$SEZONA
 for table in $FAKTB
 do 
     cp $table.DBF $F18DBPATH/fakt_$table.dbf 
@@ -69,7 +111,7 @@ for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
     echo "lista kopiranih fajlova"
     ls $F18DBPATH 
     echo "...OK nastavljam ................."
-
+    sleep 3
 }
 
 
@@ -78,7 +120,7 @@ kalk () {
 echo "kopiram fmk db to f18" 
 echo "KALK tabele"
 KALKTB="KALK DOKS"
-cd $FMKDBPATH/KALK
+cd $FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA
 for table in $KALKTB
 do
     cp $table.DBF $F18DBPATH/kalk_$table.dbf
@@ -91,7 +133,7 @@ for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
 
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
-
+    sleep 3
 }
 
 
@@ -100,7 +142,7 @@ epdv () {
 echo "kopiram fmk db to f18" 
 echo "EPDV tabele"
 EPTB="KIF KUF PDV SG_KIF SG_KUF"
-cd $FMKDBPATH/EPDV
+cd $FMKDBPATH/EPDV/KUM$IDFIRMA/$SEZONA
 for table in $EPTB
 do
     cp $table.DBF $F18DBPATH/epdv_$table.dbf
@@ -113,7 +155,7 @@ for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
 
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
-
+    sleep 3
 }
 
 os () {
@@ -121,7 +163,7 @@ os () {
 echo "kopiram fmk db to f18" 
 echo "OS tabele"
 OSTB="K1 OS PROMJ"
-cd $FMKDBPATH/OS
+cd $FMKDBPATH/OS/KUM$IDFIRMA/$SEZONA
 for table in $OSTB
 do
     cp $table.DBF $F18DBPATH/os_$table.dbf
@@ -133,7 +175,7 @@ cd $F18DBPATH
 for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
 echo "lista kopiranih fajlova"
 ls $F18DBPATH
-
+sleep 3
 } 
 
 ld () {
@@ -141,7 +183,7 @@ ld () {
 echo "kopiram fmk db to f18" 
 echo "LD tabele"
 LDTB="LD NORSIHT OBRACUNI PK_DATA PK_RADN RADKR RADN RADSAT RJ TPRSIHT"
-cd $FMKDBPATH/LD
+cd $FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA
 for table in $LDTB
 do
     cp $table.DBF $F18DBPATH/ld_$table.dbf
@@ -154,7 +196,7 @@ for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
 
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
-
+    sleep 3
 }
 
 
@@ -163,7 +205,7 @@ mat () {
 echo "kopiram fmk db to f18" 
 echo "MAT tabele"
 MATTB="SUBAN ANAL SINT NALOG"
-cd $FMKDBPATH/MAT
+cd $FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA
 for table in $MATTB
 do
     cp  $table.DBF $F18DBPATH/mat_$table.dbf
@@ -174,6 +216,7 @@ cd $F18DBPATH
 for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
+    sleep 3
 cd .. 
 echo "...OK nastavljam ................."
 
@@ -187,7 +230,7 @@ sif  () {
 echo "kopiram fmk db to f18" 
 echo "SIF tabele"
 SIFTB="ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR"
-cd $FMKDBPATH/SIF
+cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
 for table in $SIFTB
 do
     cp $table.DBF $F18DBPATH/$table.dbf
@@ -206,29 +249,27 @@ for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
     mv fmkrules.dbf f18_rules.dbf
     mv parobr.dbf ld_parobr.dbf
 
+echo ""    
+echo ""
 echo "lista kopiranih fajlova"
+echo ""
+echo ""
 ls $F18DBPATH
+sleep 3
 
 }
 
-
-echo "pozivamo funkcije, npr fin sif"
-
-
-
-$3
-$4
 $5
 $6
 $7
 $8
 $9
+${10}
+${11}
+${12}
+${13}
+${14}
 
 
 echo "gotovo................."
-
-
-
-
 exit 0
-
