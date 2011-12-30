@@ -1,3 +1,7 @@
+0.3.0  2011-12-27, totalna razrada, provjere itd
+
+- [#25890](http://redmine.bring.out.ba/issues/25890)
+
 0.2.0  2011-12-27, mayor rewrite
 
 - [#25890](http://redmine.bring.out.ba/issues/25890)

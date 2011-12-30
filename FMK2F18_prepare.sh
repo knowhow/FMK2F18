@@ -125,7 +125,7 @@ kalk () {
 echo "kopiram fmk db to f18" 
 echo "KALK tabele"
 KALKTB="KALK DOKS"
-if [ ! -d "$FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA" ]; then echo "LD source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA" ]; then echo "KALK source ne postoji" ;  exit ; fi
 cd $FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA
     for table in $KALKTB
     do
@@ -239,7 +239,7 @@ rnal () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
 echo "RNAL tabele"
-RNALTTB="DOCS DOC_IT DOC_IT2 DOC_OPS DOC_LOG DOC_LIT"
+RNALTB="DOCS DOC_IT DOC_IT2 DOC_OPS DOC_LOG DOC_LIT"
 if [ ! -d "$FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA" ]; then echo "RNAL source ne postoji" ;  exit ; fi
      cd $FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA
      for table in $RNALTB

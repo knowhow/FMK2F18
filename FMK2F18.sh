@@ -14,9 +14,10 @@ then
 fi
 
 cd $5
-for files in $( ls *.dbf);do
-    DBNAME=`echo $files | cut -d. -f1`
-dbf2pg -h $1 -y 5432 -d $4 -u $2 -p $3 -e fmk -f $files -t $DBNAME 
+TABLES=`ls *.dbf`
+for table in $TABLES ;do
+    DBNAME=`echo $table | cut -d. -f1`
+dbf2pg -h $1 -y 5432 -d $4 -u $2 -p $3 -e fmk -f $table -t $DBNAME & 
 done
 exit
 
