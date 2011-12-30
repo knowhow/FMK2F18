@@ -1,7 +1,7 @@
 #!/bin/bash
-# ver 0.1.1
+# ver 0.1.2
 # bjasko@bring.out.ba 
-# 27.12.2011
+# 29.12.2011
 ###########################################
 FMKDBPATH="$1"
 F18DBPATH="$2"
@@ -10,6 +10,8 @@ GODINA="$4"
 ###########################################
 ARGS=5
 BADARGS=85
+
+# check args
 
 if [ $# -lt  "$ARGS" ];then
      echo ""
@@ -24,6 +26,7 @@ if [ $# -lt  "$ARGS" ];then
      exit $BADARGS
 fi
 
+# check paths 
 if [ -d $F18DBPATH ]; then
      echo "$F18DBPATH je OK, nastavljam ......."
      else
@@ -35,8 +38,8 @@ if [ -d $FMKDBPATH ]; then
      cd $FMKDBPATH
      else
      echo "$FMKDBPATH ne postoji provjerite podesenja"
+     exit
 fi
-
 
 # dali je RP ili Sezona 
 if [ "$GODINA" =  "RP" ]
@@ -46,7 +49,7 @@ if [ "$GODINA" =  "RP" ]
     SEZONA="$GODINA" 
 fi
 
-# info 
+# display  info 
 
 bold=`tput bold`
 normal=`tput sgr0`
@@ -77,9 +80,10 @@ fin () {
 echo "kopiram fmk db to f18" 
 echo "FIN tabele"
 FINTB="SUBAN ANAL SINT NALOG"
-cd $FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA
-for table in $FINTB
-do 
+if [ ! -d "$FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA" ]; then echo "FIN source ne postoji" ;  exit ; fi
+    cd $FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA
+    for table in $FINTB
+    do 
     cp $table.DBF $F18DBPATH/fin_$table.dbf 
 done
 cd $F18DBPATH
@@ -97,9 +101,10 @@ fakt () {
 echo "kopiram fmk db to f18" 
 echo "FAKT tabele"
 FAKTB="FAKT DOKS DOKS2 GEN_UG GEN_UG_P RUGOV UGOV UPL"
+if [ ! -d "$FMKDBPATH/FAKT/KUM$IDFIRMA/$SEZONA" ]; then echo "FAKT source ne postoji" ;  exit ; fi
     cd $FMKDBPATH/FAKT/KUM$IDFIRMA/$SEZONA
-for table in $FAKTB
-do 
+    for table in $FAKTB
+    do 
     cp $table.DBF $F18DBPATH/fakt_$table.dbf 
     cp $table.FPT $F18DBPATH/fakt_$table.fpt
 
@@ -120,9 +125,10 @@ kalk () {
 echo "kopiram fmk db to f18" 
 echo "KALK tabele"
 KALKTB="KALK DOKS"
+if [ ! -d "$FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA" ]; then echo "LD source ne postoji" ;  exit ; fi
 cd $FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA
-for table in $KALKTB
-do
+    for table in $KALKTB
+    do
     cp $table.DBF $F18DBPATH/kalk_$table.dbf
 
 done
@@ -142,9 +148,10 @@ epdv () {
 echo "kopiram fmk db to f18" 
 echo "EPDV tabele"
 EPTB="KIF KUF PDV SG_KIF SG_KUF"
+if [ ! -d "$FMKDBPATH/EPDV/KUM$IDFIRMA/$SEZONA" ]; then echo "EPDV source ne postoji" ;  exit ; fi
 cd $FMKDBPATH/EPDV/KUM$IDFIRMA/$SEZONA
-for table in $EPTB
-do
+    for table in $EPTB
+    do
     cp $table.DBF $F18DBPATH/epdv_$table.dbf
 
 done
@@ -163,9 +170,10 @@ os () {
 echo "kopiram fmk db to f18" 
 echo "OS tabele"
 OSTB="K1 OS PROMJ"
-cd $FMKDBPATH/OS/KUM$IDFIRMA/$SEZONA
-for table in $OSTB
-do
+if [ ! -d "$FMKDBPATH/OS/KUM$IDFIRMA/$SEZONA" ]; then echo "OS source ne postoji" ;  exit ; fi
+    cd $FMKDBPATH/OS/KUM$IDFIRMA/$SEZONA
+    for table in $OSTB
+    do
     cp $table.DBF $F18DBPATH/os_$table.dbf
 
 done
@@ -173,19 +181,21 @@ done
 cd $F18DBPATH
 
 for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
-echo "lista kopiranih fajlova"
-ls $F18DBPATH
-sleep 3
+    echo "lista kopiranih fajlova"
+    ls $F18DBPATH
+    sleep 3
 } 
+
 
 ld () {
 # copy FMK LD DB to F18
 echo "kopiram fmk db to f18" 
 echo "LD tabele"
 LDTB="LD NORSIHT OBRACUNI PK_DATA PK_RADN RADKR RADN RADSAT RJ TPRSIHT"
-cd $FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA
-for table in $LDTB
-do
+if [ ! -d "$FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA" ]; then echo "LD source ne postoji" ;  exit ; fi
+    cd $FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA
+    for table in $LDTB
+    do
     cp $table.DBF $F18DBPATH/ld_$table.dbf
 
 done
@@ -205,9 +215,10 @@ mat () {
 echo "kopiram fmk db to f18" 
 echo "MAT tabele"
 MATTB="SUBAN ANAL SINT NALOG"
-cd $FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA
-for table in $MATTB
-do
+if [ ! -d "$FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA" ]; then echo "MAT source ne postoji" ;  exit ; fi
+    cd $FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA
+    for table in $MATTB
+    do
     cp  $table.DBF $F18DBPATH/mat_$table.dbf
 
 done
@@ -224,19 +235,49 @@ echo "...OK nastavljam ................."
 
 
 
+rnal () {
+# copy FMK DB to F18
+echo "kopiram fmk db to f18" 
+echo "RNAL tabele"
+RNALTTB="DOCS DOC_IT DOC_IT2 DOC_OPS DOC_LOG DOC_LIT"
+if [ ! -d "$FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA" ]; then echo "RNAL source ne postoji" ;  exit ; fi
+     cd $FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA
+     for table in $RNALTB
+     do
+     cp  $table.DBF $F18DBPATH/rnal_$table.dbf
+ 
+done
+ 
+cd $F18DBPATH
+for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+echo "lista kopiranih fajlova"
+ls $F18DBPATH
+sleep 3
+cd ..
+echo "...OK nastavljam ................."
+ 
+}
+
+
+
+
+
+
 
 sif  () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
 echo "SIF tabele"
 SIFTB="ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR"
-cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
-for table in $SIFTB
-do
+if [ ! -d "$FMKDBPATH/SIF$IDFIRMA/$SEZONA" ]; then echo "SIF source ne postoji" ;  exit ; fi
+    cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
+    for table in $SIFTB
+    do
     cp $table.DBF $F18DBPATH/$table.dbf
 done
-for files in $( ls *.FPT )
-do     
+
+    for files in $( ls *.FPT )
+    do     
     cp $files $F18DBPATH
 done
 
