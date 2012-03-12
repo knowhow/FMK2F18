@@ -124,7 +124,7 @@ kalk () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
 echo "KALK tabele"
-KALKTB="KALK DOKS"
+KALKTB="KALK DOKS DOKS2"
 if [ ! -d "$FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA" ]; then echo "KALK source ne postoji" ;  exit ; fi
 cd $FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA
     for table in $KALKTB
@@ -185,6 +185,28 @@ for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
     ls $F18DBPATH
     sleep 3
 } 
+
+
+sii () {
+# copy SII FMK DB to F18
+echo "kopiram fmk db to f18" 
+echo "SII tabele"
+OSTB="K1 OS PROMJ"
+if [ ! -d "$FMKDBPATH/SII/KUM$IDFIRMA/$SEZONA" ]; then echo "SII source ne postoji" ;  exit ; fi
+    cd $FMKDBPATH/SII/KUM$IDFIRMA/$SEZONA
+    for table in $OSTB
+    do
+    cp $table.DBF $F18DBPATH/sii_$table.dbf
+done
+
+cd $F18DBPATH
+
+for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+    echo "lista kopiranih fajlova"
+    ls $F18DBPATH
+    sleep 3
+} 
+
 
 
 ld () {
@@ -268,7 +290,7 @@ sif  () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
 echo "SIF tabele"
-SIFTB="ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR"
+SIFTB="ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR LDVIRM VRPRIM VRSTEP"
 if [ ! -d "$FMKDBPATH/SIF$IDFIRMA/$SEZONA" ]; then echo "SIF source ne postoji" ;  exit ; fi
     cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
     for table in $SIFTB
