@@ -88,7 +88,7 @@ if [ ! -d "$FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA" ]; then echo "FIN source ne posto
 done
 cd $F18DBPATH
 
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
     echo "lista kopiranih fajlova"
     ls $F18DBPATH 
     echo "...OK nastavljam ................."
@@ -111,7 +111,7 @@ if [ ! -d "$FMKDBPATH/FAKT/KUM$IDFIRMA/$SEZONA" ]; then echo "FAKT source ne pos
 done
 
 cd $F18DBPATH
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
 
     echo "lista kopiranih fajlova"
     ls $F18DBPATH 
@@ -135,7 +135,7 @@ done
 
 cd $F18DBPATH
 
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
 
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
@@ -158,7 +158,7 @@ done
 
 cd $F18DBPATH
 
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
 
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
@@ -180,7 +180,7 @@ done
 
 cd $F18DBPATH
 
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
     sleep 3
@@ -201,7 +201,7 @@ done
 
 cd $F18DBPATH
 
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
     sleep 3
@@ -224,7 +224,7 @@ done
 
 cd $F18DBPATH
 
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
 
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
@@ -246,7 +246,7 @@ if [ ! -d "$FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA" ]; then echo "MAT source ne posto
 done
 
 cd $F18DBPATH
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
     echo "lista kopiranih fajlova"
     ls $F18DBPATH
     sleep 3
@@ -271,7 +271,7 @@ if [ ! -d "$FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA" ]; then echo "RNAL source ne pos
 done
  
 cd $F18DBPATH
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
 echo "lista kopiranih fajlova"
 ls $F18DBPATH
 sleep 3
@@ -290,7 +290,7 @@ sif  () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
 echo "SIF tabele"
-SIFTB="ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ PKONTO REFER KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR LDVIRM VRPRIM VRSTEP"
+SIFTB="ADRES ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ PKONTO REFER KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR LDVIRM VRPRIM VRSTEP"
 if [ ! -d "$FMKDBPATH/SIF$IDFIRMA/$SEZONA" ]; then echo "SIF source ne postoji" ;  exit ; fi
     cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
     for table in $SIFTB
@@ -305,7 +305,7 @@ done
 
 cd $F18DBPATH
 
-for i in $( ls | grep [A-Z] ); do mv -i $i `echo $i | tr 'A-Z' 'a-z'`;done
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
     mv amort.dbf os_amort.dbf
     mv reval.dbf os_reval.dbf
     mv ftxt.dbf  fakt_ftxt.dbf
