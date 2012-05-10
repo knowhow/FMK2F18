@@ -290,7 +290,7 @@ sif  () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
 echo "SIF tabele"
-SIFTB="ADRES ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ PKONTO REFER KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR LDVIRM VRPRIM VRSTEP"
+SIFTB="ADRES ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ PKONTO REFER KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR LDVIRM VRPRIM VRSTEP RAL ARTICLES ELEMENTS AOPS AOPS_ATT CONTACTS CUSTOMS E_AOPS E_ATT E_GR_ATT E_GR_VAL E_GROUPS OBJECTS RELATION"
 if [ ! -d "$FMKDBPATH/SIF$IDFIRMA/$SEZONA" ]; then echo "SIF source ne postoji" ;  exit ; fi
     cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
     for table in $SIFTB
@@ -311,6 +311,19 @@ for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
     mv ftxt.dbf  fakt_ftxt.dbf
     mv fmkrules.dbf f18_rules.dbf
     mv parobr.dbf ld_parobr.dbf
+    mv articles.dbf rnal_articles.dbf
+    mv ral.dbf rnal_ral.dbf
+    mv elements.dbf rnal_elements.dbf
+    mv aops.dbf rnal_aops.dbf
+    mv aops_att.dbf rnal_aops_att.dbf
+    mv contacts.dbf rnal_contacts.dbf
+    mv customs.dbf rnal_customs.dbf
+    mv e_aops.dbf rnal_e_aops.dbf
+    mv e_att.dbf rnal_e_att.dbf
+    mv e_gr_att.dbf rnal_e_gr_att.dbf
+    mv e_gr_val.dbf rnal_e_gr_val.dbf
+    mv e_groups.dbf rnal_e_groups.dbf
+    mv objects.dbf rnal_objects.dbf
 
 echo ""    
 echo ""
