@@ -80,7 +80,7 @@ fin () {
 echo "kopiram fmk db to f18" 
 echo "FIN tabele"
 FINTB="SUBAN ANAL SINT NALOG"
-if [ ! -d "$FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA" ]; then echo "FIN source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA" ]; then echo "FIN source ne postoji" ; fi
     cd $FMKDBPATH/FIN/KUM$IDFIRMA/$SEZONA
     for table in $FINTB
     do 
@@ -101,7 +101,7 @@ fakt () {
 echo "kopiram fmk db to f18" 
 echo "FAKT tabele"
 FAKTB="FAKT DOKS DOKS2 GEN_UG GEN_UG_P RUGOV UGOV UPL"
-if [ ! -d "$FMKDBPATH/FAKT/KUM$IDFIRMA/$SEZONA" ]; then echo "FAKT source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/FAKT/KUM$IDFIRMA/$SEZONA" ]; then echo "FAKT source ne postoji" ; fi
     cd $FMKDBPATH/FAKT/KUM$IDFIRMA/$SEZONA
     for table in $FAKTB
     do 
@@ -125,7 +125,7 @@ kalk () {
 echo "kopiram fmk db to f18" 
 echo "KALK tabele"
 KALKTB="KALK DOKS DOKS2"
-if [ ! -d "$FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA" ]; then echo "KALK source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA" ]; then echo "KALK source ne postoji" ; fi
 cd $FMKDBPATH/KALK/KUM$IDFIRMA/$SEZONA
     for table in $KALKTB
     do
@@ -170,7 +170,7 @@ os () {
 echo "kopiram fmk db to f18" 
 echo "OS tabele"
 OSTB="K1 OS PROMJ"
-if [ ! -d "$FMKDBPATH/OS/KUM$IDFIRMA/$SEZONA" ]; then echo "OS source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/OS/KUM$IDFIRMA/$SEZONA" ]; then echo "OS source ne postoji" ; fi
     cd $FMKDBPATH/OS/KUM$IDFIRMA/$SEZONA
     for table in $OSTB
     do
@@ -192,7 +192,7 @@ sii () {
 echo "kopiram fmk db to f18" 
 echo "SII tabele"
 OSTB="K1 OS PROMJ"
-if [ ! -d "$FMKDBPATH/SII/KUM$IDFIRMA/$SEZONA" ]; then echo "SII source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/SII/KUM$IDFIRMA/$SEZONA" ]; then echo "SII source ne postoji" ;  fi
     cd $FMKDBPATH/SII/KUM$IDFIRMA/$SEZONA
     for table in $OSTB
     do
@@ -214,7 +214,7 @@ ld () {
 echo "kopiram fmk db to f18" 
 echo "LD tabele"
 LDTB="LD NORSIHT OBRACUNI PK_DATA PK_RADN RADKR RADN RADSAT RJ TPRSIHT"
-if [ ! -d "$FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA" ]; then echo "LD source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA" ]; then echo "LD source ne postoji" ; fi
     cd $FMKDBPATH/LD/KUM$IDFIRMA/$SEZONA
     for table in $LDTB
     do
@@ -237,7 +237,7 @@ mat () {
 echo "kopiram fmk db to f18" 
 echo "MAT tabele"
 MATTB="SUBAN ANAL SINT NALOG"
-if [ ! -d "$FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA" ]; then echo "MAT source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA" ]; then echo "MAT source ne postoji" ; fi
     cd $FMKDBPATH/MAT/KUM$IDFIRMA/$SEZONA
     for table in $MATTB
     do
@@ -262,7 +262,7 @@ rnal () {
 echo "kopiram fmk db to f18" 
 echo "RNAL tabele"
 RNALTB="DOCS DOC_IT DOC_IT2 DOC_OPS DOC_LOG DOC_LIT"
-if [ ! -d "$FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA" ]; then echo "RNAL source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA" ]; then echo "RNAL source ne postoji" ; fi
      cd $FMKDBPATH/RNAL/KUM$IDFIRMA/$SEZONA
      for table in $RNALTB
      do
@@ -291,7 +291,7 @@ sif  () {
 echo "kopiram fmk db to f18" 
 echo "SIF tabele"
 SIFTB="ADRES ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ PKONTO REFER KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR LDVIRM VRPRIM VRSTEP RAL ARTICLES ELEMENTS AOPS AOPS_ATT CONTACTS CUSTOMS E_AOPS E_ATT E_GR_ATT E_GR_VAL E_GROUPS OBJECTS RELATION"
-if [ ! -d "$FMKDBPATH/SIF$IDFIRMA/$SEZONA" ]; then echo "SIF source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/SIF$IDFIRMA/$SEZONA" ]; then echo "SIF source ne postoji" ; fi
     cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
     for table in $SIFTB
     do
