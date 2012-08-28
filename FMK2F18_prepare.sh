@@ -232,6 +232,32 @@ for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
 }
 
 
+virm () {
+# copy FMK VIRM DB to F18
+echo "kopiram fmk db to f18" 
+echo "VIRM tabele"
+VIRMTB="LDVIRM VRPRIM"
+if [ ! -d "$FMKDBPATH/VIRM/KUM$IDFIRMA/$SEZONA" ]; then echo "VIRM source ne postoji" ; fi
+    cd $FMKDBPATH/VIRM/KUM$IDFIRMA/$SEZONA
+    for table in $VIRMTB
+    do
+    cp $table.DBF $F18DBPATH/$table.dbf
+
+done
+
+cd $F18DBPATH
+
+for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
+
+    echo "lista kopiranih fajlova"
+    ls $F18DBPATH
+    sleep 3
+}
+
+
+
+
+
 mat () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
@@ -290,7 +316,7 @@ sif  () {
 # copy FMK DB to F18
 echo "kopiram fmk db to f18" 
 echo "SIF tabele"
-SIFTB="ADRES ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ PKONTO REFER KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR LDVIRM VRPRIM VRSTEP RAL ARTICLES ELEMENTS AOPS AOPS_ATT CONTACTS CUSTOMS E_AOPS E_ATT E_GR_ATT E_GR_VAL E_GROUPS OBJECTS RELATION"
+SIFTB="ADRES ROBA SIFK SIFV PARTN BANKE KONTO POR RJ SAST TARIFA TDOK TIPPR TIPPR2 TNAL TRFP TRFP2 TRFP3 VALUTE VPOSLA VPRIH OPS KBENEF KONCIJ PKONTO REFER KRED DOPR LOKAL AMORT REVAL FMKRULES DEST FTXT PAROBR STRSPR JPRIH KALVIR VRSTEP RAL ARTICLES ELEMENTS AOPS AOPS_ATT CONTACTS CUSTOMS E_AOPS E_ATT E_GR_ATT E_GR_VAL E_GROUPS OBJECTS RELATION"
 if [ ! -d "$FMKDBPATH/SIF$IDFIRMA/$SEZONA" ]; then echo "SIF source ne postoji" ; fi
     cd $FMKDBPATH/SIF$IDFIRMA/$SEZONA
     for table in $SIFTB
