@@ -148,7 +148,7 @@ epdv () {
 echo "kopiram fmk db to f18" 
 echo "EPDV tabele"
 EPTB="KIF KUF PDV SG_KIF SG_KUF"
-if [ ! -d "$FMKDBPATH/EPDV/KUM$IDFIRMA/$SEZONA" ]; then echo "EPDV source ne postoji" ;  exit ; fi
+if [ ! -d "$FMKDBPATH/EPDV/KUM$IDFIRMA/$SEZONA" ]; then echo "EPDV source ne postoji" ; fi
 cd $FMKDBPATH/EPDV/KUM$IDFIRMA/$SEZONA
     for table in $EPTB
     do
@@ -253,9 +253,6 @@ for i in $( ls | grep [A-Z] ); do mv -i -f $i `echo $i | tr 'A-Z' 'a-z'`;done
     ls $F18DBPATH
     sleep 3
 }
-
-
-
 
 
 mat () {
